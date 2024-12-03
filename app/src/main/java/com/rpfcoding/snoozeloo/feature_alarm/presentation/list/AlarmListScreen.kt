@@ -86,6 +86,7 @@ fun AlarmListScreenRoot(
             )
         },
         onGetTimeToSleepInSeconds = { alarm ->
+            // Feedback: Resulting Flow is not used
             viewModel.getTimeToSleepInSecondsFlow(
                 hour = alarm.hour,
                 minute = alarm.minute,
@@ -101,6 +102,7 @@ private fun AlarmListScreen(
     onAction: (AlarmListAction) -> Unit,
     onGetTimeLeftInSeconds: (alarm: Alarm) -> Flow<Long>,
     onGetTimeToSleepInSeconds: (alarm: Alarm) -> Flow<Long?>,
+    // FEEDBACK: isPreview == LocalInspectionMode.current
     isPreview: Boolean = false
 ) {
     Scaffold(

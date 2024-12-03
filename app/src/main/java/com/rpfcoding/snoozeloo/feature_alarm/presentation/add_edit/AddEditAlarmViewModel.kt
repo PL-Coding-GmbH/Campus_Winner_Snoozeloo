@@ -25,6 +25,7 @@ class AddEditAlarmViewModel(
     private val ringtoneManager: RingtoneManager
 ): ViewModel() {
 
+    // FEEDBACK: StateFlow vs Compose state
     var state by mutableStateOf(AddEditAlarmState())
         private set
 
@@ -63,6 +64,7 @@ class AddEditAlarmViewModel(
         )
     }
 
+    // FEEDBACK: Naming
     private fun getDefaultRingtoneIfAlarmIsNull() {
         val ringtone = ringtoneManager.getAvailableRingtones().getOrNull(1)
 

@@ -69,8 +69,10 @@ fun AddEditAlarmScreenRoot(
     val state = viewModel.state
     var isNavigatingBack by remember { mutableStateOf(false) }
 
+    // FEEDBACK: Normal back won't work
     BackHandler {}
 
+    // FEEDBACK: Collection doesn't happen lifecycle-aware
     LaunchedEffect(Unit) {
         viewModel.events.collectLatest { event ->
             when (event) {
@@ -86,6 +88,7 @@ fun AddEditAlarmScreenRoot(
         isNavigatingBack = false
     }
 
+    // FEEDBACK: Could be moved to the VM
     LaunchedEffect(state.existingAlarmFetched) {
         if (!state.existingAlarmFetched && !isNavigatingBack) {
             // Set the state with existingAlarm data.
@@ -116,6 +119,7 @@ private fun AddAlarmScreen(
     state: AddEditAlarmState,
     onAction: (AddEditAlarmAction) -> Unit
 ) {
+    // FEEDBACK: Will close after config change
     var isDialogOpened by remember { mutableStateOf(false) }
 
     AddAlarmScreenMainContent(

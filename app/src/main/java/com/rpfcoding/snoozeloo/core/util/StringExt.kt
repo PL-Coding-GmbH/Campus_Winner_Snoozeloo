@@ -33,6 +33,8 @@ fun formatSecondsToHourAndMinute(value: Long): String {
 /**
  * @return format 95_670 seconds to 1d 2h 34min
  */
+
+// FEEDBACK: Long and quite unreadable function
 fun formatSeconds(value: Long): String {
     val totalTimeDuration = value.toDuration(DurationUnit.SECONDS)
     val days = totalTimeDuration.getRemainingDays().coerceAtLeast(0)
@@ -71,5 +73,23 @@ fun formatSeconds(value: Long): String {
                 ""
             }
         }
+    }
+}
+
+fun formatSecondsPL(value: Long): String {
+    val totalTimeDuration = value.toDuration(DurationUnit.SECONDS)
+    val days = totalTimeDuration.getRemainingDays().coerceAtLeast(0)
+    val hours = totalTimeDuration.getRemainingHours().coerceAtLeast(0)
+    val minutes = totalTimeDuration.getRemainingMinutes().coerceAtLeast(0)
+
+    val parts = mutableListOf<String>()
+    if (days > 0) parts.add("${days}d")
+    if (hours > 0) parts.add("${hours}h")
+    if (minutes > 0) parts.add("${minutes}min")
+
+    return when {
+        parts.isNotEmpty() -> parts.joinToString(" ")
+        value < 60 -> "less than a minute"
+        else -> "0min"
     }
 }

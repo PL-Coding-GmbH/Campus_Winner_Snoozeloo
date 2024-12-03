@@ -7,6 +7,7 @@ import java.time.LocalDateTime
 
 class GetTimeLeftInSecondsUseCase {
 
+    // FEEDBACK: Seems a bit overcomplicated with converting LocalDateTime back and forth
     operator fun invoke(futureDateTime: LocalDateTime): Flow<Long> {
         return flow {
             while (true) {

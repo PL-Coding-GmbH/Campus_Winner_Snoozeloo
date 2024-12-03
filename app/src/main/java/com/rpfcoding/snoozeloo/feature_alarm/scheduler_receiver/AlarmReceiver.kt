@@ -36,6 +36,7 @@ class AlarmReceiver: BroadcastReceiver() {
 
         private val alarmRepository: AlarmRepository by inject()
         private val ringtoneManager: MyRingtoneManager by inject()
+        // FEEDBACK: More modern way would be an application bound coroutine scope
         private val handler by lazy { Handler(Looper.getMainLooper()) }
 
         fun onReceive(context: Context?, intent: Intent?) {
@@ -43,6 +44,7 @@ class AlarmReceiver: BroadcastReceiver() {
             if (context == null) {
                 return
             }
+            // FEEDBACK: Blocking call on the main thread
             val alarm = runBlocking { alarmRepository.getById(alarmId) } ?: return
             val alarmName = alarm.name.ifBlank { "Alarm" }
 

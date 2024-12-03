@@ -56,6 +56,7 @@ class AlarmRepositoryImpl(
 
         val updatedAlarm = alarm.copy(repeatDays = repeatDays)
 
+        // FEEDBACK: Could use local upsert function
         // Finally, update the DB AND schedule updated alarm.
         localAlarmDataSource.upsert(updatedAlarm)
         alarmScheduler.schedule(updatedAlarm)
@@ -75,6 +76,8 @@ class AlarmRepositoryImpl(
 
     override suspend fun scheduleAllEnabledAlarms() {
         withContext(Dispatchers.IO) {
+            // FEEDBACK: alarmScheduler.schedule() is not a suspending function, the
+            // async blocks have no effect
             val setAlarmsDeferred = getAll().first().map { alarm ->
                 async {
                     if (alarm.enabled) {

@@ -8,6 +8,7 @@ import com.rpfcoding.snoozeloo.feature_alarm.domain.LocalAlarmDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
+// FEEDBACK: Redundant class, alarmDao can be used in repo directly
 class RoomLocalAlarmDataSource(
     private val alarmDao: AlarmDao
 ): LocalAlarmDataSource {

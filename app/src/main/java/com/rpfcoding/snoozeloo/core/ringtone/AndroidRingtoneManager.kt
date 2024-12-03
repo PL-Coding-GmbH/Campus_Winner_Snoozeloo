@@ -14,6 +14,7 @@ class AndroidRingtoneManager(
 
     private var mediaPlayer: MediaPlayer? = null
 
+    // FEEDBACK: Possibly blocking function
     override fun getAvailableRingtones(): List<NameAndUri> {
         val ringtoneManager = android.media.RingtoneManager(context).apply {
             setType(android.media.RingtoneManager.TYPE_ALARM)
@@ -87,6 +88,7 @@ class AndroidRingtoneManager(
         mediaPlayer = null
     }
 
+    // FEEDBACK: Could call stop() for exceptions
     override fun isPlaying(): Boolean {
         return try {
              mediaPlayer?.isPlaying == true

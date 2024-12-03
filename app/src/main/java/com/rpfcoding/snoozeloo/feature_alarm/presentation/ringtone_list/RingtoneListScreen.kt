@@ -48,8 +48,11 @@ fun RingtoneListScreenRoot(
     navigateBack: () -> Unit,
     ringtoneManager: RingtoneManager = koinInject()
 ) {
+    // FEEDBACK: State doesn't survive config changes
     var state by remember { mutableStateOf(RingtoneListState()) }
 
+    // FEEDBACK: Not the responsibility of the UI, will refetch ringtones
+    // after config changes
     LaunchedEffect(Unit) {
         val availableRingtones = ringtoneManager.getAvailableRingtones()
         state = state.copy(
@@ -67,6 +70,8 @@ fun RingtoneListScreenRoot(
         selectedRingtone = selectedRingtone,
         onRingtoneSelected = {
             onRingtoneSelected(it)
+
+            // FEEDBACK: Not the responsibility of the UI, keep it dumb
             if (it.second != SILENT) {
                 ringtoneManager.play(it.second)
             }

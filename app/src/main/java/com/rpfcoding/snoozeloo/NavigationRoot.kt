@@ -33,6 +33,7 @@ private fun NavGraphBuilder.alarmGraph(navController: NavHostController) {
         route = "alarm",
         startDestination = "alarm_list"
     ) {
+        // FEEDBACK: Could be replaced with type-safe navigation
         composable(route = "alarm_list") { entry ->
             AlarmListScreenRoot(
                 navigateToAddEditScreen = {
@@ -53,6 +54,7 @@ private fun NavGraphBuilder.alarmGraph(navController: NavHostController) {
             )
         ) { entry ->
             val alarmId = entry.arguments?.getString("alarmId")
+            // FEEDBACK: Treat shared VMs with care
             val viewModel = entry.sharedKoinViewModel<AddEditAlarmViewModel>(navController)
 
             AddEditAlarmScreenRoot(

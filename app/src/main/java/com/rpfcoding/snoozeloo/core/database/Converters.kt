@@ -4,6 +4,7 @@ import androidx.room.TypeConverter
 
 class Converters {
 
+    // GENERAL FEEDBACK: Careful with such type converters
     @TypeConverter
     fun setToString(value: Set<Int>): String {
         return value.joinToString(",")

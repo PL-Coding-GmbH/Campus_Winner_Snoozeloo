@@ -22,6 +22,7 @@ class BootCompletedReceiver: BroadcastReceiver() {
         bootCompletedHelper.onReceive(intent)
     }
 
+    // FEEDBACK: Not sure if necessary
     private class BootCompletedHelper: KoinComponent {
         private val alarmRepository: AlarmRepository by inject()
 

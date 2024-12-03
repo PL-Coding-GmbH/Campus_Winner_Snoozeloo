@@ -63,6 +63,7 @@ class AlarmListViewModel(
         return getTimeLeftInSecondsUseCase(futureDateTime)
     }
 
+    // FEEDBACK: UI should observe state instead of creating new Flows
     fun getTimeToSleepInSecondsFlow(hour: Int, minute: Int, repeatDays: Set<DayValue>): Flow<Long?> {
         val futureDateTime = getFutureDateUseCase(hour, minute, repeatDays)
         return getTimeToSleepInSecondsUseCase(hour, futureDateTime)

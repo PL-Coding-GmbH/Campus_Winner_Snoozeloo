@@ -18,5 +18,7 @@ val featureAlarmDataModule = module {
     singleOf(::ValidateAlarmUseCase)
     single { GetFutureDateUseCase() }
     singleOf(::GetTimeLeftInSecondsUseCase)
+
+    // FEEDBACK: Could also use singleOf
     single { GetTimeToSleepInSecondsUseCase() }
 }

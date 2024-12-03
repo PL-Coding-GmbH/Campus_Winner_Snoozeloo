@@ -48,12 +48,14 @@ class ReminderActivity : ComponentActivity() {
             SnoozelooTheme {
                 var effectsSet by remember { mutableStateOf(true) }
 
+                // FEEDBACK: Unclear effect to me, could need a why-comment
                 LaunchedEffect(Unit) {
                     viewModel.getAlarmById(alarmId)
                     delay(500L)
                     effectsSet = false
                 }
 
+                // FEEDBACK: Could be moved to VM, config change resets the delay
                 LaunchedEffect(Unit) {
                     delay(ALARM_MAX_REMINDER_MILLIS)
                     viewModel.alarm?.let {
@@ -102,6 +104,7 @@ class ReminderActivity : ComponentActivity() {
         finish()
     }
 
+    // FEEDBACK: Would move such functions to the data layer
     private fun setupEffects(alarm: Alarm) {
         val pattern = AlarmConstants.VIBRATE_PATTERN_LONG_ARR
         if (isOreoPlus() && alarm.vibrate) {

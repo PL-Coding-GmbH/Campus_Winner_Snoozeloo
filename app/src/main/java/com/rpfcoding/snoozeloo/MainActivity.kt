@@ -16,6 +16,7 @@ class MainActivity : ComponentActivity() {
         actionBar?.hide()
 
         if (isTiramisuPlus()) {
+            // FEEDBACK: Delaying permission requests until necessary is better for UX
             ActivityCompat.requestPermissions(
                 this,
                 arrayOf(Manifest.permission.POST_NOTIFICATIONS),

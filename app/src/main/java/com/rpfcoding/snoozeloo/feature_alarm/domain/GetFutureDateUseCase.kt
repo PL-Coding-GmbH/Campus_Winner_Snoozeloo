@@ -3,6 +3,7 @@ package com.rpfcoding.snoozeloo.feature_alarm.domain
 import java.time.DayOfWeek
 import java.time.LocalDateTime
 
+// FEEDBACK: Passing now to the constructor can lead to bugs, pass to function instead
 class GetFutureDateUseCase(
     private val now: LocalDateTime? = null
 ) {
