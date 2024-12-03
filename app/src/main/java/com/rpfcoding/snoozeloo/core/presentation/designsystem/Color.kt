@@ -1,4 +1,4 @@
-package com.rpfcoding.snoozeloo.ui.theme
+package com.rpfcoding.snoozeloo.core.presentation.designsystem
 
 import androidx.compose.ui.graphics.Color
 
